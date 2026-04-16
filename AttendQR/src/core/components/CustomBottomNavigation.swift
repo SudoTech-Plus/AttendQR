@@ -8,13 +8,10 @@ struct CustomBottomNavigation: View {
     // Mapping for Lucide Icons from LucideIcons package
     // Note: We use UIImage because this package provides icons as UIImage/NSImage properties
     private let navItems: [(icon: UIImage, label: String)] = [
-        (Lucide.layoutDashboard, "Dashboard"),
-        (Lucide.wallet, "Expenses"),
-        (Lucide.briefcase, "Projects"),
-        (Lucide.landmark, "Salary"),
-        (Lucide.piggyBank, "Savings"),
-        (Lucide.bot, "AI"),
-        (Lucide.power, "Logout")
+        (Lucide.house, "Home"),
+        (Lucide.qrCode, "Scan"),
+        (Lucide.calendar, "Events"),
+        (Lucide.user, "Profile")
     ]
     
     var body: some View {
@@ -39,10 +36,10 @@ struct CustomBottomNavigation: View {
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 8)
-            .background(colorScheme == .dark ? AppColors.cardDark : Color(.systemBackground))
+            .background( AppColors.primary)
         }
         .background(
-            (colorScheme == .dark ? AppColors.cardDark : Color(.systemBackground))
+            ( AppColors.primary)
                 .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: -2)
         )
     }
@@ -57,6 +54,6 @@ struct CustomBottomNavigation_Previews: PreviewProvider {
             CustomBottomNavigation(currentIndex: .constant(0))
             Spacer()
         }
-        .background(Color(.systemGray6))
+        .background(AppColors.primary)
     }
 }

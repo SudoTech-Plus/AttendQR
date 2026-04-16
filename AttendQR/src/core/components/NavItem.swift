@@ -23,18 +23,18 @@ import LucideIcons
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 24, height: 24)
-                    .foregroundColor(isSelected ? (colorScheme == .dark ? .white : .blue) : .gray)
+                    .foregroundColor(isSelected ? (colorScheme == .dark ? AppColors.accent: AppColors.accent) : .gray)
                     .padding(8)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(isSelected ? (colorScheme == .dark ? Color.white.opacity(0.2) : Color.blue.opacity(0.15)) : Color.clear)
+                            .fill(isSelected ? (colorScheme == .dark ? AppColors.accent.opacity(0.2) : AppColors.accent.opacity(0.15)) : Color.clear)
                     )
                 
                 // Label using CustomText (our component)
                 CustomText(
                     title: label,
                     fontSize: 10,
-                    fontColor: isSelected ? (colorScheme == .dark ? .white : .blue) : .gray,
+                    fontColor: isSelected ? (colorScheme == .dark ? AppColors.accent: AppColors.accent) : .gray,
                     weight: isSelected ? .semibold : .medium
                 )
             }
