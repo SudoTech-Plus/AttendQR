@@ -8,7 +8,7 @@ struct AppEvent: Identifiable {
     let date: String
     let location: String
     let category: String
-    let imageName: String // Placeholder for asset name
+    let imageUrl: String
     let isJoined: Bool
 }
 
@@ -25,10 +25,10 @@ class UserEventsViewModel: ObservableObject {
     
     func loadMockEvents() {
         events = [
-            AppEvent(title: "iOS Development Summit", date: "JUL 18, 2026", location: "San Francisco, CA", category: "Workshop", imageName: "event1", isJoined: false),
-            AppEvent(title: "Annual Tech Conference", date: "AUG 05, 2026", location: "Online", category: "Education", imageName: "event2", isJoined: true),
-            AppEvent(title: "Music Festival 2026", date: "SEPT 12, 2026", location: "London, UK", category: "Social", imageName: "event3", isJoined: false),
-            AppEvent(title: "Morning Team Sync", date: "TOMORROW, 09:00 AM", location: "Office Room 3B", category: "Work", imageName: "event4", isJoined: true)
+            AppEvent(title: "iOS Development Summit", date: "JUL 18, 2026", location: "San Francisco, CA", category: "Workshop", imageUrl: "https://images.unsplash.com/photo-1540575861501-7ad05823c93b?auto=format&fit=crop&q=80&w=800", isJoined: false),
+            AppEvent(title: "Annual Tech Conference", date: "AUG 05, 2026", location: "Online", category: "Education", imageUrl: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800", isJoined: true),
+            AppEvent(title: "Music Festival 2026", date: "SEPT 12, 2026", location: "London, UK", category: "Social", imageUrl: "https://images.unsplash.com/photo-1459749411177-042180ce673f?auto=format&fit=crop&q=80&w=800", isJoined: false),
+            AppEvent(title: "Morning Team Sync", date: "TOMORROW, 09:00 AM", location: "Office Room 3B", category: "Work", imageUrl: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=800", isJoined: true)
         ]
     }
     

@@ -101,15 +101,33 @@ struct EventCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            // Event Image Placeholder
+            // Event Image
             ZStack(alignment: .topTrailing) {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(LinearGradient(
-                        colors: [Color.white.opacity(0.1), Color.white.opacity(0.05)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ))
-                    .frame(height: 180)
+                AsyncImage(url: URL(string: event.imageUrl)) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 180)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(height: 180)
+                            .clipped()
+                            .cornerRadius(16)
+                    case .failure(_):
+                        Image(systemName: "photo")
+                            .font(.system(size: 30))
+                            .foregroundColor(AppColors.textTertiary)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 180)
+                            .background(Color.white.opacity(0.05))
+                            .cornerRadius(16)
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
                 
                 // Category Badge
                 Text(event.category)

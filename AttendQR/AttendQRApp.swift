@@ -28,6 +28,8 @@ struct AttendQRApp: App {
                         ForgotPasswordView()
                     case .main:
                         UserMainView()
+                    case .organizerMain:
+                        OrganizerMainView()
                     }
                 }
                 .environmentObject(themeManager)

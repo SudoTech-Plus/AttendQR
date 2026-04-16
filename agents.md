@@ -43,12 +43,12 @@ When you are tasked with creating a new feature:
 [x] Events Screen
 [x] Profile Screen
 [x] Bottom Navigation
-
-
-***Unfinished***
 [x] Register Screen for user only example full name, email, password, confirm password ui only
 [x] OTP Screen ui only
 [x] Forgot Password Screen ui only
+
+
+***Unfinished***
 [x] Login function using supabase database
 [x] Register function using supabase database
 [x] Forgot Password function using supabase database 

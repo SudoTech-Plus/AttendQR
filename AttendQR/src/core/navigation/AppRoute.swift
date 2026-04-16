@@ -17,6 +17,7 @@ enum AppRoute: Hashable {
     case otp
     case forgotPassword
     case main
+    case organizerMain
 }
 
 /// Centralized router for managing global application state and navigation

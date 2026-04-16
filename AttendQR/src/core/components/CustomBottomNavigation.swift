@@ -5,9 +5,7 @@ struct CustomBottomNavigation: View {
     @Binding var currentIndex: Int
     @Environment(\.colorScheme) var colorScheme
     
-    // Mapping for Lucide Icons from LucideIcons package
-    // Note: We use UIImage because this package provides icons as UIImage/NSImage properties
-    private let navItems: [(icon: UIImage, label: String)] = [
+    var navItems: [(icon: UIImage, label: String)] = [
         (Lucide.house, "Home"),
         (Lucide.qrCode, "Scan"),
         (Lucide.calendar, "Events"),
