@@ -54,7 +54,7 @@ struct AnimatedDialogWrapper_Previews: PreviewProvider {
                     .cornerRadius(8)
                 }
                 .padding()
-                .background(Color(UIColor.systemBackground))
+                .background(AppColors.surface)
                 .cornerRadius(16)
                 .shadow(radius: 10)
                 .padding(40)

@@ -27,6 +27,58 @@ struct PageTransitionModifier: ViewModifier {
     }
 }
 
+/// A custom view modifier for standard page-level layout, similar to Flutter's Scaffold
+struct PageContainer<Content: View>: View {
+    let content: Content
+    let title: String?
+    let showBackButton: Bool
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    init(title: String? = nil, showBackButton: Bool = false, @ViewBuilder content: () -> Content) {
+        self.content = content()
+        self.title = title
+        self.showBackButton = showBackButton
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header
+            if title != nil || showBackButton {
+                HStack {
+                    if showBackButton {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    
+                    if let title = title {
+                        Text(title)
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.primary)
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.top, 60) // Safe area top
+                .padding(.bottom, 16)
+                .background(AppColors.background)
+            }
+            
+            // Content
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(AppColors.surface)
+        }
+        .edgesIgnoringSafeArea(.top)
+    }
+}
+
 // MARK: - Animation Wrapper
 extension Animation {
     /// Standard page transition animation (300ms easeOutCubic equivalent)
@@ -70,7 +122,7 @@ struct PageTransition_Previews: PreviewProvider {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(UIColor.secondarySystemBackground))
+                .background(AppColors.background)
             }
         }
     }

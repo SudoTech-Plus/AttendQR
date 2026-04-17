@@ -18,7 +18,7 @@ struct PercentageIndicator: View {
         let icon = isIncrease ? Lucide.trendingUp : (isDecrease ? Lucide.trendingDown : Lucide.minus)
         
         HStack(spacing: 4) {
-            Image(uiImage: icon)
+            Image(platformImage: icon)
                 .renderingMode(.template)
                 .resizable()
                 .aspectRatio(contentMode: .fit)

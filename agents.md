@@ -50,14 +50,16 @@ When you are tasked with creating a new feature:
 [x] Organizer Events Screen ui only
 [x] Organizer Profile Screen ui only
 [x] Organizer Bottom Navigation ui only use the existing the bottom navigation
+[x] Login function using supabase database
+[x] Register function using supabase database
+[x] Send otp in the email using resend otp using supabase edge function
 
 
 ***Unfinished***
-[x] Login function using supabase database
-[x] Register function using supabase database
 [x] Forgot Password function using supabase database 
 [x] Allow the organizers to create, edit and delete events
 [x] Allow the organizers to detailed if its a payment or free with descritions, time, and quantity
 [x] logout functions both organizer and users
 [x] Allow the users to buy tickets for events
 [x] realtime data display in the organizers
+[x] In forgot passowrd it will send the opt then once it correct, it allow user to edit the password.

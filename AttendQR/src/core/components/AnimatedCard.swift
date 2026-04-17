@@ -32,7 +32,7 @@ struct AnimatedCard<Content: View>: View {
         }) {
             content
                 .padding(margin ?? EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .background(color ?? Color(UIColor.systemBackground))
+                .background(color ?? AppColors.surface)
                 .cornerRadius(borderRadius ?? 12)
         }
         .buttonStyle(AnimatedCardButtonStyle(scaleOnTap: scaleOnTap))
@@ -78,5 +78,5 @@ struct AnimatedCardButtonStyle: ButtonStyle {
         .padding(.horizontal)
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color(UIColor.secondarySystemBackground))
+    .background(AppColors.background)
 }

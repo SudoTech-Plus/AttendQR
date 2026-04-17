@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct OTPView: View {
+    @StateObject private var viewModel = OTPViewModel()
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var router: Router
-    @State private var otpCode: [String] = Array(repeating: "", count: 4)
     @FocusState private var activeField: Int?
     
     var body: some View {
@@ -31,34 +31,48 @@ struct OTPView: View {
                     )
                     
                     CustomText(
-                        title: "Enter the code sent to your email",
+                        title: "Enter the code sent to \(router.pendingEmail)",
                         fontSize: 16,
                         fontColor: AppColors.textTertiary,
                         weight: .medium
                     )
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 40)
                 }
                 .padding(.top, 40)
                 
                 // OTP Input Fields
                 HStack(spacing: 16) {
                     ForEach(0..<4, id: \.self) { index in
-                        OTPField(text: $otpCode[index], isFocused: activeField == index)
+                        OTPField(text: $viewModel.otpCode[index], isFocused: activeField == index)
                             .focused($activeField, equals: index)
-                            .keyboardType(.numberPad)
-                            .onChange(of: otpCode[index]) { newValue in
+                            .onChange(of: viewModel.otpCode[index]) { newValue in
                                 otpCondition(value: newValue, index: index)
                             }
                     }
                 }
                 .padding(.horizontal, 40)
                 
+                // Error/Status Message
+                if let error = viewModel.errorMessage {
+                    Text(error)
+                        .font(.system(size: 14))
+                        .foregroundColor(error.contains("success") ? AppColors.accent : AppColors.error)
+                        .padding(.horizontal, 40)
+                        .multilineTextAlignment(.center)
+                }
+                
                 VStack(spacing: 24) {
-                    CustomButton(label: "Verify", onPressed: {
-                        // Simulated verification
-                        router.navigate(to: .main)
-                    })
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: AppColors.accent))
+                    } else {
+                        CustomButton(label: "Verify", onPressed: {
+                            viewModel.verify()
+                        })
+                    }
                     
-                    Button(action: { /* Resend code */ }) {
+                    Button(action: { viewModel.resend() }) {
                         HStack {
                             Text("Didn't receive a code?")
                                 .foregroundColor(AppColors.textSecondary)
@@ -68,10 +82,24 @@ struct OTPView: View {
                         }
                         .font(.system(size: 14))
                     }
+                    .disabled(viewModel.isLoading)
                 }
                 .padding(.horizontal, 40)
                 
                 Spacer()
+            }
+        }
+        #if os(iOS)
+        .navigationBarHidden(true)
+        #endif
+        .onAppear {
+            // Initialize VM with router context
+            viewModel.email = router.pendingEmail
+            viewModel.username = router.pendingUsername
+        }
+        .onChange(of: viewModel.verificationSuccess) { success in
+            if success {
+                router.navigate(to: .main)
             }
         }
     }
@@ -79,7 +107,7 @@ struct OTPView: View {
     private func otpCondition(value: String, index: Int) {
         // Handle input change
         if value.count > 1 {
-            otpCode[index] = String(value.suffix(1))
+            viewModel.otpCode[index] = String(value.suffix(1))
         }
         
         if !value.isEmpty {

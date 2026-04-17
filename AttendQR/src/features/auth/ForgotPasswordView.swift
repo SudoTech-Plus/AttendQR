@@ -45,7 +45,6 @@ struct ForgotPasswordView: View {
                         icon: "envelope.fill",
                         placeholder: "Email Address",
                         text: $email,
-                        keyboardType: .emailAddress
                     )
                     
                     if isLoading {

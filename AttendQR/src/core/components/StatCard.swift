@@ -1,16 +1,11 @@
-//
-//  StatCard.swift
-//  Wenlance_Swift
-//
-//  Created by Frouen on 2/4/26.
-//
 import SwiftUI
+
 // MARK: - Stat Card Sub-view
 struct StatCard: View {
     let title: String
     let value: String
     let percentageChange: Double?
-    let icon: UIImage
+    let icon: PlatformImage
     let iconColor: Color
     
     @Environment(\.colorScheme) var colorScheme
@@ -23,7 +18,7 @@ struct StatCard: View {
                         .fill(iconColor.opacity(0.2))
                         .frame(width: 44, height: 44)
                     
-                    Image(uiImage: icon)
+                    Image(platformImage: icon)
                         .renderingMode(.template)
                         .resizable()
                         .aspectRatio(contentMode: .fit)

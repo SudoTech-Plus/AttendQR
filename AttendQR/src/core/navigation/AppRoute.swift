@@ -24,6 +24,10 @@ enum AppRoute: Hashable {
 class Router: ObservableObject {
     @Published var currentRoot: AppRoute = .splash
     
+    // Transient state for registration flow
+    @Published var pendingEmail: String = ""
+    @Published var pendingUsername: String = ""
+    
     /// Navigate to a new root view with an animation
     func navigate(to route: AppRoute) {
         DispatchQueue.main.async {

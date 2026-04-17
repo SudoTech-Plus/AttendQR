@@ -1,12 +1,16 @@
 import SwiftUI
+import Combine
 
 struct CustomInputField: View {
     let icon: String?
     let placeholder: String
     @Binding var text: String
     var isSecure: Bool = false
+    
+    #if os(iOS)
     var keyboardType: UIKeyboardType = .default
     var autoCapitalization: TextInputAutocapitalization = .never
+    #endif
     
     @Environment(\.colorScheme) var colorScheme
     @FocusState private var isFocused: Bool
@@ -30,8 +34,6 @@ struct CustomInputField: View {
                     }
                 }
                 .focused($isFocused)
-                .keyboardType(keyboardType)
-                .textInputAutocapitalization(autoCapitalization)
                 .font(.custom("ElmsSans", size: 16))
                 .foregroundColor(isFocused ? .white : AppColors.textPrimary)
                 
@@ -66,13 +68,13 @@ struct CustomInputField: View {
         CustomInputField(
             icon: "envelope.fill",
             placeholder: "Email Address",
-            text: .constant("")
+            text: Binding.constant("")
         )
         
         CustomInputField(
             icon: "lock.fill",
             placeholder: "Password",
-            text: .constant("password"),
+            text: Binding.constant("password"),
             isSecure: true
         )
     }

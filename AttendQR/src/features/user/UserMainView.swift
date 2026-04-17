@@ -26,10 +26,8 @@ struct UserMainView: View {
             
             // Bottom Navigation
             CustomBottomNavigation(currentIndex: $selectedTab)
-                .padding(.bottom, 0)
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
-        .navigationBarHidden(true)
     }
 }
 

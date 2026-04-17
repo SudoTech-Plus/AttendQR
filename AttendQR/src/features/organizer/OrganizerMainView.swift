@@ -7,7 +7,7 @@ struct OrganizerMainView: View {
     @EnvironmentObject var router: Router
     
     // Custom set of navigation items for Organizers
-    private let organizerNavItems: [(icon: UIImage, label: String)] = [
+    private let organizerNavItems: [(icon: PlatformImage, label: String)] = [
         (Lucide.layoutDashboard, "Dashboard"),
         (Lucide.calendar, "Events"),
         (Lucide.user, "Profile")
@@ -37,7 +37,9 @@ struct OrganizerMainView: View {
             )
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
+        #if os(iOS)
         .navigationBarHidden(true)
+        #endif
     }
 }
 

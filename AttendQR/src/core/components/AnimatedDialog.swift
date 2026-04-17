@@ -100,7 +100,7 @@ struct AnimatedDialog_Previews: PreviewProvider {
                         .padding(.top, 8)
                     }
                     .padding(24)
-                    .background(Color(UIColor.systemBackground))
+                    .background(AppColors.surface)
                     .cornerRadius(16)
                     .shadow(radius: 20)
                     .padding(.horizontal, 40)

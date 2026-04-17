@@ -61,7 +61,7 @@ struct AnimatedListItem_Previews: PreviewProvider {
                             Spacer()
                         }
                         .padding()
-                        .background(Color(UIColor.systemBackground))
+                        .background(AppColors.surface)
                         .cornerRadius(12)
                         .shadow(color: Color.black.opacity(0.05), radius: 5, y: 2)
                     }
@@ -70,6 +70,6 @@ struct AnimatedListItem_Previews: PreviewProvider {
             }
             .padding(.vertical)
         }
-        .background(Color(UIColor.systemGroupedBackground))
+        .background(AppColors.background)
     }
 }

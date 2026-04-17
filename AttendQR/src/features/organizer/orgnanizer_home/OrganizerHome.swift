@@ -61,7 +61,7 @@ struct OrganizerHome: View {
                 title: "Scanned Today",
                 value: "\(viewModel.totalScannedToday)",
                 percentageChange: 12.5,
-                icon: UIImage(systemName: "qrcode.viewfinder") ?? UIImage(),
+                icon: .system("qrcode.viewfinder"),
                 iconColor: AppColors.accent
             )
             
@@ -69,7 +69,7 @@ struct OrganizerHome: View {
                 title: "Active Events",
                 value: "\(viewModel.activeEventsToday)",
                 percentageChange: nil,
-                icon: UIImage(systemName: "bolt.fill") ?? UIImage(),
+                icon: .system("bolt.fill"),
                 iconColor: .orange
             )
             
@@ -77,7 +77,7 @@ struct OrganizerHome: View {
                 title: "Capacity",
                 value: String(format: "%.0f%%", viewModel.capacityUsage),
                 percentageChange: -2.4,
-                icon: UIImage(systemName: "person.3.fill") ?? UIImage(),
+                icon: .system("person.3.fill"),
                 iconColor: .blue
             )
             
@@ -85,7 +85,7 @@ struct OrganizerHome: View {
                 title: "Next Event",
                 value: viewModel.nextEventIn,
                 percentageChange: nil,
-                icon: UIImage(systemName: "clock.fill") ?? UIImage(),
+                icon: .system("clock.fill"),
                 iconColor: .purple
             )
         }

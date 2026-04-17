@@ -5,7 +5,7 @@ struct CustomBottomNavigation: View {
     @Binding var currentIndex: Int
     @Environment(\.colorScheme) var colorScheme
     
-    var navItems: [(icon: UIImage, label: String)] = [
+    var navItems: [(icon: PlatformImage, label: String)] = [
         (Lucide.house, "Home"),
         (Lucide.qrCode, "Scan"),
         (Lucide.calendar, "Events"),
@@ -34,10 +34,10 @@ struct CustomBottomNavigation: View {
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 8)
-            .background( AppColors.primary)
+            .background(AppColors.primary)
         }
         .background(
-            ( AppColors.primary)
+            AppColors.primary
                 .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: -2)
         )
     }

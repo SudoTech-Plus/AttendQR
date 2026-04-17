@@ -46,7 +46,6 @@ struct LoginView: View {
                                 icon: "envelope.fill",
                                 placeholder: "Email",
                                 text: $viewModel.email,
-                                keyboardType: .emailAddress
                             )
                             
                             CustomInputField(
@@ -140,7 +139,9 @@ struct LoginView: View {
             
             // No longer needed: Theme Toggle removed since app is now Dark Mode Only.
         }
+        #if os(iOS)
         .navigationBarHidden(true)
+        #endif
         .onChange(of: viewModel.loginSuccess) { success in
             if success {
                 router.navigate(to: .main)

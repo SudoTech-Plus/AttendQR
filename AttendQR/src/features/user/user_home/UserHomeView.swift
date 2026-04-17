@@ -147,17 +147,15 @@ struct UserHomeView: View {
                     title: "Attendance",
                     value: String(format: "%.1f%%", viewModel.attendanceRate),
                     percentageChange: 2.5,
-                    icon: UIImage(systemName: "chart.bar.fill") ?? UIImage(),
+                    icon: .system("chart.bar.fill"),
                     iconColor: AppColors.accent
                 )
-                
-                // ... (StatCard uses AppColors and standard Text internally, usually)
                 
                 StatCard(
                     title: "Total Events",
                     value: "\(viewModel.totalEvents)",
                     percentageChange: nil,
-                    icon: UIImage(systemName: "calendar") ?? UIImage(),
+                    icon: .system("calendar"),
                     iconColor: .orange
                 )
                 
@@ -165,7 +163,7 @@ struct UserHomeView: View {
                     title: "Upcoming",
                     value: "\(viewModel.upcomingEvents)",
                     percentageChange: nil,
-                    icon: UIImage(systemName: "clock.fill") ?? UIImage(),
+                    icon: .system("clock.fill"),
                     iconColor: .blue
                 )
                 
@@ -173,7 +171,7 @@ struct UserHomeView: View {
                     title: "Reward Points",
                     value: "\(viewModel.points)",
                     percentageChange: 15.0,
-                    icon: UIImage(systemName: "star.fill") ?? UIImage(),
+                    icon: .system("star.fill"),
                     iconColor: .yellow
                 )
             }

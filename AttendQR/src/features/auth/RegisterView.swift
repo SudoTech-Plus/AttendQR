@@ -51,7 +51,6 @@ struct RegisterView: View {
                                 icon: "envelope.fill",
                                 placeholder: "Email",
                                 text: $viewModel.email,
-                                keyboardType: .emailAddress
                             )
                             
                             CustomInputField(
@@ -121,9 +120,13 @@ struct RegisterView: View {
                 }
             }
         }
+        #if os(iOS)
         .navigationBarHidden(true)
+        #endif
         .onChange(of: viewModel.registerSuccess) { success in
             if success {
+                router.pendingEmail = viewModel.email
+                router.pendingUsername = viewModel.fullName
                 router.navigate(to: .otp)
             }
         }

@@ -65,6 +65,6 @@ struct AnimatedFAB_Previews: PreviewProvider {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(UIColor.systemGroupedBackground))
+        .background(AppColors.background)
     }
 }
